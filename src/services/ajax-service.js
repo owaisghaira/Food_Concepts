@@ -1,15 +1,14 @@
 import axios from 'axios';
-import store from '../../redux/store/index';
-import { showLoader, hideLoader } from '../../redux/actions/loaderAction';
-import ToastService from './toastService';
-import { loadToken, removeToken } from './sessionStorage';
+//import store from '../../redux/store/index';
+//import { showLoader, hideLoader } from '../../redux/actions/loaderAction';
+//import ToastService from './toastService';
+//import { loadToken, removeToken } from './sessionStorage';
 
 export const GlobalVariable = Object.freeze({
     APP_VERSION: '1.0.0',
     BASE_API_URL: 'https://liveservices.eazyshop.net/api/',
-    //BASE_API_URL: 'http://192.168.1.106:45455/api/',
     BASE_IMAGE_URL: 'https://live.eazyshop.net',
-    CLIENT_TOKEN: 'nxcFOxl|Xd4vuNg3ZoUXzYk',
+    CLIENT_TOKEN: 'JnP4FFS|YIcpEGBV0yBR2nu',
 });
 
 class AjaxService {
@@ -94,18 +93,18 @@ class AjaxService {
 
     async executeImageRequest(url, data, imageData, type) {
 
-        store.dispatch(showLoader());
+        //store.dispatch(showLoader());
 
         let headers = {
             'X-Client-Token': GlobalVariable.CLIENT_TOKEN,
             'Content-Type': 'multipart/form-data'
         }
 
-        const sessionToken = await loadToken();
+        // const sessionToken = await loadToken();
 
-        if (!(sessionToken === null)) {
-            headers['X-Auth-Token'] = sessionToken;
-        }
+        // if (!(sessionToken === null)) {
+        //     headers['X-Auth-Token'] = sessionToken;
+        // }
 
         const uri = this.generateUrl(url);
 
@@ -122,10 +121,10 @@ class AjaxService {
         }
 
         axios.interceptors.response.use(function (response) {
-            store.dispatch(hideLoader());
+            //store.dispatch(hideLoader());
             return response;
         }, function (error) {
-            store.dispatch(hideLoader());
+            //store.dispatch(hideLoader());
             return Promise.reject(error);
         });
 
@@ -133,7 +132,7 @@ class AjaxService {
     }
 
     async executeRequest(url, data, type) {
-        store.dispatch(showLoader());
+
         let headers = {};
 
         if (type == 'POST') {
@@ -145,11 +144,11 @@ class AjaxService {
             headers = { 'X-Client-Token': GlobalVariable.CLIENT_TOKEN };
         }
 
-        const sessionToken = await loadToken();
+        // const sessionToken = await loadToken();
 
-        if (!(sessionToken === null)) {
-            headers['X-Auth-Token'] = sessionToken;
-        }
+        // if (!(sessionToken === null)) {
+        //     headers['X-Auth-Token'] = sessionToken;
+        // }
 
         const uri = this.generateUrl(url);
 
@@ -167,15 +166,15 @@ class AjaxService {
         }
 
         axios.interceptors.response.use(function (response) {
-            store.dispatch(hideLoader());
-            return response;
+            //store.dispatch(hideLoader());
+            return response.data;
         }, function (error) {
-            store.dispatch(hideLoader());
+            //store.dispatch(hideLoader());
             if (401 === error.response.status) {
                 
                 if(error.config.url.includes('ogin') || error.config.url.includes('egister')){
-                    removeToken();
-                    ToastService.show('Invalid phone or password');
+                    //removeToken();
+                    //ToastService.show('Invalid phone or password');
                 }else{
                     //ToastService.show('Your session has been timed out. Please re login');
                 }
@@ -204,12 +203,12 @@ class AjaxService {
         }
 
         return axios(options).then(response => {
-            store.dispatch(hideLoader());
+            //store.dispatch(hideLoader());
             return response;
         }).catch(function (error) {
-            store.dispatch(hideLoader());
+            //store.dispatch(hideLoader());
 
-            ToastService.show(error);
+            //ToastService.show(error);
         });
     }
 }

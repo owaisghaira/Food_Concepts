@@ -116,7 +116,7 @@ const ProductExplorer = ({ products, isMobileLayout }) => {
                     >
                         {
                             products.map((product, index) => {
-                                return <div key={'product-carousel-tile-' + index}  ><ProductTile item={product} isMobileLayout={isMobileLayout} size={size} /></div>
+                                return <div key={index}  ><ProductTile item={product} isMobileLayout={isMobileLayout} size={size} /></div>
                             })
                         }
                     </Carousel>
@@ -129,7 +129,7 @@ const ProductExplorer = ({ products, isMobileLayout }) => {
         <>
             <div className={isMobileLayout ? "p15" : "p60"} style={{ marginTop: '20px', marginBottom: '20px' }} >
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Title level={4}>Explore by products</Title>
+                    <Title level={4}>Explore by Brands</Title>
                     <Text onClick={() => setToggle(!toggle)} style={{ cursor: 'pointer' }}  >{toggle ? "Collapse" : "View All"}</Text>
                 </div>
             </div>

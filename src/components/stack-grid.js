@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createRef, useRef } from 'react'
-import OpenSearchService from '../services/opensearch-service';
+import ajaxService from '../services/ajax-service';
 import { Card } from '../components';
 import ReactResizeDetector from 'react-resize-detector';
 import StackGrid, { transitions } from "react-stack-grid";
@@ -32,17 +32,18 @@ const StackGridItem = ({ isMobileLayout }) => {
 
     useEffect(() => {
         const getHomeData = async () => {
-            let response = await OpenSearchService.getHomeData();
+            let response = await ajaxService.post('Product/Search',{ Keyword : 'all' , Start : 0 , Length : 1000 });
 
-            if (response.status === 200 && response.data !== null) {
-                items = response.data.hits.hits;
-                let stacks = paginate(items, 8, start);
-                setPins(stacks);
-                setStart((start) => start + 1);
-            }
+            console.log(response)
+            // if (response.status === 200 && response.data !== null) {
+            //     items = response.data.hits.hits;
+            //     let stacks = paginate(items, 8, start);
+            //     setPins(stacks);
+            //     setStart((start) => start + 1);
+            // }
         }
 
-        // getHomeData();
+        getHomeData();
 
         let width = gridContianer.current.clientWidth;
         let size = isMobileLayout ? width / 2 - 25 : width / 5 - 50;

@@ -3,7 +3,7 @@ import { Input, Layout, Menu, Tag } from 'antd';
 import "antd/dist/antd.css";
 import { SearchOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
-import OpenSearchService from '../services/opensearch-service';
+import ajaxService from '../services/ajax-service.js';
 import { importCollection } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -45,31 +45,32 @@ const LayoutHeader = () => {
 
         const getCollection = async () => {
 
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const params = Object.fromEntries(urlSearchParams.entries());
+                //let response = await ajaxService.get('Category/Index');
+                // if (response.Success) {
+                    
+                //     let { Brands } = response.Payload;
+                //     console.log(Brands);
+                //     // 
+                //     let brand = { BrandID : 1, Name : 'Mirchi Hut', Image : 'wru0893ru09dfje0f9e.jpg'}
+                // }
 
-            if (params.collection_id !== undefined) {
-
-                let response = await OpenSearchService.getCollection(params.collection_id);
-
-                if (response && response.data != null) {
-                    let { collection_items, collection_name, id } = response.data;
-
-                    let items = [];
-
-                    if (collection_items !== undefined && collection_items.length > 0) {
-                        collection_items.map(i => {
-                            items.push(i._source);
-                            return i;
-                        });
-                    }
-
-                    dispatch(importCollection({ items, collection_name, id }));
-                    history.push({ pathname: '/my-collection' });
-                }
+                /*
+                   public int CategoryId { get; set; }
+        public string Keyword { get; set; }
+        public bool SortAscending { get; set; }
+        public int SortBy { get; set; }
+        public double MinimumPrice { get; set; }
+        public double MaximumPrice { get; set; }
+        public int SearchType { get; set; }
+        public int StoreId { get; set; }
+        public int Length { get; set; }
+        public int Start { get; set; }
+        public int[] Brands { get; set; }
+        public int[] Attributes { get; set; }
+                */
 
             }
-        }
+        
 
         getCollection();
 

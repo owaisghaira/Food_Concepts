@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHorizontalScroll } from '../hooks';
 import OpenSearchService from '../services/opensearch-service';
+import ajaxService from '../services/ajax-service';
 import { useHistory } from "react-router-dom";
 
 const ScrollableCategories = ({ isMobileLayout }) => {
@@ -12,21 +13,26 @@ const ScrollableCategories = ({ isMobileLayout }) => {
 
     useEffect(() => {
         const getCategories = async () => {
-            let response = await OpenSearchService.getCategories();
+
+            let categoryResponse = await ajaxService.get('Category/Index');
+
+            console.log(categoryResponse)
+  
             let items = [];
 
-            if (response.status === 200 && response.data !== null) {
-                //hits/hits/_source/product_type_name
-                response.data.hits.hits.map(i => {
-                    items.push(i._source.product_type_name);
+            if (categoryResponse != undefined && categoryResponse.Success) {
+                categoryResponse.Payload.map(i => {
+                    items.push(i.Name);
                     return i;
                 });
 
+                console.log(items)
                 setCategories(items);
             }
         }
 
-        // getCategories();
+        getCategories();
+
     }, []);
 
     const handleClick = (category) => {

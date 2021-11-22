@@ -12,11 +12,11 @@ const ProductTile = ({ item, size, isMobileLayout }) => {
     const [font, setFont] = useState(25);
     const styles = isMobileLayout ? {} : { maxWidth: '20%', flex: '0 0 20%', cursor: 'pointer' };
 
-    let { product_group_name, product_group_image } = item._source;
+    let { Name, Image } = item;
 
     const goToProduct = () => {
 
-        history.push({ pathname: `/search/product-group/` + product_group_name });
+      //  history.push({ pathname: `/search/product-group/` + product_group_name });
     }
 
     useEffect(() => {
@@ -38,9 +38,9 @@ const ProductTile = ({ item, size, isMobileLayout }) => {
             lg={4}
         >
             <div ref={container} onClick={goToProduct}>
-                <div style={{ borderRadius: '15px', width: imageDimension, height: imageDimension, backgroundImage: `url(${product_group_image.thumbnail})`, backgroundSize: 'cover', margin : '0px auto', marginBottom : '15px' }} className="card-item" >
+                <div style={{ borderRadius: '15px', width: imageDimension, height: imageDimension, backgroundImage: `url(${Image})`, backgroundSize: 'cover', margin : '0px auto', marginBottom : '15px' }} className="card-item" >
                     <div className="overlay" >
-                        <Text ellipsis={true} style={{ fontSize: `${font}px` }}  >{product_group_name}</Text>
+                        <Text ellipsis={true} style={{ fontSize: `${font}px` }}  >{Name}</Text>
                     </div>
                 </div>
             </div>
