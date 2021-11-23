@@ -86,12 +86,12 @@ const ProductExplorer = ({ products, isMobileLayout }) => {
         } else {
             if (isMobileLayout) {
 
-                let chunks = chunk(products, 4);
+                let chunks = chunk(products, 2);
 
                 return (
                     <Carousel
                         responsive={responsive}
-                        showDots={true}
+                        showDots={false}
                         //itemClass="c-item"
                         renderDotsOutside={true}
                         removeArrowOnDeviceType={['mobile']}
@@ -107,7 +107,7 @@ const ProductExplorer = ({ products, isMobileLayout }) => {
                 return (
                     <Carousel
                         responsive={responsive}
-                        showDots={true}
+                        showDots={false}
                         infinite={true}
                         itemClass="c-item"
                         renderDotsOutside={true}

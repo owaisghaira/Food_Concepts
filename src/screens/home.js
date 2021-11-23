@@ -4,7 +4,7 @@ import ApplicationLayout from '../layout';
 import { ScrollableCategories, StackGrid, ProductExplorer } from '../components';
 import { Layout } from 'antd';
 
-const { Content } = Layout;
+const { Sider, Content } = Layout;
 
 const Home = () => {
     //    let { product_group_name, product_group_image } = item._source;

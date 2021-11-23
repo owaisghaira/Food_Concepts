@@ -51,7 +51,7 @@ const StackGridItem = ({ isMobileLayout, term, type }) => {
             }
         }
 
-        getSearchData();
+        // getSearchData();
 
         let width = gridContianer.current.clientWidth;
         let size = isMobileLayout ? width / 2 - 25 : width / 5 - 50;

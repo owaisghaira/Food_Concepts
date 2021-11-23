@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Menu } from 'antd';
 import { useHorizontalScroll } from '../hooks';
 import OpenSearchService from '../services/opensearch-service';
 import ajaxService from '../services/ajax-service';
@@ -16,17 +17,17 @@ const ScrollableCategories = ({ isMobileLayout }) => {
 
             let categoryResponse = await ajaxService.get('Category/Index');
 
-            console.log(categoryResponse)
-  
+            // console.log(categoryResponse)
+
             let items = [];
 
-            if (categoryResponse != undefined && categoryResponse.Success) {
+            if (categoryResponse !== undefined && categoryResponse.Success) {
                 categoryResponse.Payload.map(i => {
                     items.push(i.Name);
                     return i;
                 });
 
-                console.log(items)
+                // console.log(items)
                 setCategories(items);
             }
         }
@@ -40,11 +41,15 @@ const ScrollableCategories = ({ isMobileLayout }) => {
     }
 
     return (
-        <div className={isMobileLayout ? "p15" : "p35"} >
-            <div className="scrollmenu" id="scrollmenu" ref={scrollRef} >
-                {categories.map((category, index) => {
-                    return <span className="btn m-l-10 m-b-10" onClick={() => handleClick(category)} key={`category-` + index}  >{category}</span>
-                })}
+        <div >
+            <div className="scrollmenu shadow" id="scrollmenu" ref={scrollRef} >
+                <Menu>
+                    {categories.map((category, index) => {
+                        return <Menu.Item className="btn m-l-10 m-b-10" key={`category-` + index}  >
+                            {category}
+                        </Menu.Item>
+                    })}
+                </Menu>
             </div>
         </div>
     );
