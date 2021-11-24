@@ -42,7 +42,7 @@ const ScrollableCategories = ({ isMobileLayout }) => {
 
     return (
         <div >
-            <div className="scrollmenu shadow" id="scrollmenu" ref={scrollRef} >
+            <div className="scrollmenu shadow px-sm-5" id="scrollmenu" ref={scrollRef} >
                 <Menu>
                     {categories.map((category, index) => {
                         return <Menu.Item className="btn m-l-10 m-b-10" key={`category-` + index}  >

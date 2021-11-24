@@ -9,28 +9,30 @@ const { Text } = Typography;
 
 const Buttons = ({ item, quick }) => {
 
+
     const collections = useSelector((state) => state.collections);
+    // console.log(collections)
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
 
     const addNewCollection = (name, item) => {
-        dispatch(createCollection({ name, item }));
+        dispatch(createCollection({item }));
         setIsEditing(false)
-        mixpanelService.quickAddNewCollection();
+        // mixpanelService.quickAddNewCollection();
     }
 
     const addToCollection = (key, item) => {
         dispatch(addItemToCollection({ key, item }));
-        if (quick) {
-            mixpanelService.quickAddToCollection(item.id, item.item_website_design_code)
-        } else {
-            mixpanelService.addToCollection(item.id, item.item_website_design_code)
-        }
+        // if (quick) {
+        //     mixpanelService.quickAddToCollection(item.id, item.item_website_design_code)
+        // } else {
+        //     mixpanelService.addToCollection(item.id, item.item_website_design_code)
+        // }
     }
 
     const removeItem = (key, item) => {
         dispatch(removeItemFromCollection({ key, id: item.id }));
-        mixpanelService.removeFromCollection(item.id, item.item_website_design_code);
+        // mixpanelService.removeFromCollection(item.id, item.item_website_design_code);
     }
 
     const toggle = (exist, key, item) => {
@@ -64,32 +66,32 @@ const Buttons = ({ item, quick }) => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Text strong style={{ marginBottom: '10px' }} >Add to collection</Text>
+            <Text strong style={{ marginBottom: '10px' }} >Add To Cart</Text>
             {
-                collections.map((collection, index) => {
-                    let { name, items, key } = collection;
+                // collections.map((collection, index) => {
+                //     let { name, items, key } = collection;
 
-                    let exists = items.length > 0 ? items.filter(i => i.id === item.id) : [];
+                //     let exists = items.length > 0 ? items.filter(i => i.id === item.id) : [];
 
-                    return (
-                        <Button onClick={() => toggle(exists.length > 0, key, item)} key={`button-${index}`} style={{ background: '#303d4e ', border: 'none', width: '260px', height: 'auto', color: '#FFF', textAlign: 'left', borderRadius: '8px', marginTop: '10px' }} type="primary">
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }} title={name} >
-                                <div style={{ width: '85%' }}>
-                                    <Text level={5} ellipsis={true} className="collection-btn-title"  >{name}</Text><br />
-                                    <Text className="collection-products-count" >{items.length} products</Text>
-                                </div>
-                                <span style={{ paddingTop: '10px' }}>
-                                    {renderCheck(exists.length > 0)}
-                                </span>
-                            </div>
-                        </Button>
-                    );
-                })
+                //     return (
+                //         <Button onClick={() => toggle(exists.length > 0, key, item)} key={`button-${index}`} style={{ background: '#303d4e ', border: 'none', width: '260px', height: 'auto', color: '#FFF', textAlign: 'left', borderRadius: '8px', marginTop: '10px' }} type="primary">
+                //             <div style={{ display: 'flex', justifyContent: 'space-between' }} title={name} >
+                //                 <div style={{ width: '85%' }}>
+                //                     <Text level={5} ellipsis={true} className="collection-btn-title"  >{name}</Text><br />
+                //                     <Text className="collection-products-count" >{items.length} products</Text>
+                //                 </div>
+                //                 <span style={{ paddingTop: '10px' }}>
+                //                     {renderCheck(exists.length > 0)}
+                //                 </span>
+                //             </div>
+                //         </Button>
+                //     );
+                // })
             }
 
             <div onClick={() => addNewCollection('New Collection', item)} style={{ width: '260px', textAlign: 'left', height: '43px', borderRadius: '8px', marginTop: '10px', border: '2px dashed #000', padding: '10px', cursor: 'pointer' }} >
-                <Text editable={editableControl} className="create-collection" style={{ float: 'left', width: '93%' }}>Create a new collection</Text>
-                <EditFilled style={{ color: '#000', zIndex: 999, display: 'block !important', paddingTop: '5px', float: 'right' }} onClick={(e) => iconClicked(e)} className="custom-edit" />
+                <Text editable={editableControl} className="create-collection" style={{ float: 'left', width: '93%' }}>Add To Cart</Text>
+                {/* <EditFilled style={{ color: '#000', zIndex: 999, display: 'block !important', paddingTop: '5px', float: 'right' }} onClick={(e) => iconClicked(e)} className="custom-edit" /> */}
             </div >
 
             {/* <Button type="dashed" style={{ width: '250px', textAlign: 'left', height: '43px', borderRadius: '8px', marginTop: '10px' }} onClick={() => addNewCollection(item)} >

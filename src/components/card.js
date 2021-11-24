@@ -4,7 +4,6 @@ import { Typography, Button } from 'antd';
 import { useHistory } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
 
-const { Text } = Typography;
 
 const CardItem = ({ item, size, hover }) => {
 
@@ -14,6 +13,7 @@ const CardItem = ({ item, size, hover }) => {
     const imageContianer = useRef(null);
 
     let { Images, SellingPrice, Name } = item;
+    // console.log(item)
     const goToProduct = () => {
         history.push({ pathname: `/product`, state: item });
     }
@@ -42,9 +42,9 @@ const CardItem = ({ item, size, hover }) => {
             return (
                 <div className="mobile-title-bar" >
                     {/* <Text ellipsis={true} >{Name}</Text> */}
-                    {/* <PopoverBtn item={item._source} quick={true} > */}
+                    <PopoverBtn item={item} quick={true} >
                         <Button style={{ background: '#303d4e', border: 'none' }} type="primary" icon={<PlusOutlined />} size='middle' />
-                    {/* </PopoverBtn> */}
+                    </PopoverBtn>
                 </div>
             );
         } else {
@@ -52,9 +52,9 @@ const CardItem = ({ item, size, hover }) => {
                 <div onClick={handleClick} >
                     <div className="title-bar">
                         {/* <Text ellipsis={true} >{Name}</Text> */}
-                        {/* <PopoverBtn item={item._source} > */}
+                        <PopoverBtn item={item} >
                             <Button style={{ background: '#303d4e', border: 'none' }} type="primary" icon={<PlusOutlined />} size='middle' />
-                        {/* </PopoverBtn> */}
+                        </PopoverBtn>
                     </div>
                 </div>
             );

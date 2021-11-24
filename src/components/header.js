@@ -87,7 +87,8 @@ const LayoutHeader = () => {
                     Explore
                 </Menu.Item>
                 <Menu.Item key="my-collection-top" onClick={goToMyCollection} >
-                    My Collection {renderBadge()}
+                    My Collection 
+                    {/* {renderBadge()} */}
                 </Menu.Item>
             </Menu>
         </Header>

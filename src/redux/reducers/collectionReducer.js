@@ -14,7 +14,7 @@ let initialState = [{
     hasNew: false
 }];
 
-const collectionReducer = (state = initialState, action) => {
+const collectionReducer = (state = [], action) => {
     switch (action.type) {
         case 'VISITED_COLLECTION': {
             let { key } = action.payload;
@@ -40,17 +40,17 @@ const collectionReducer = (state = initialState, action) => {
         }
         case 'CREATE_COLLECTION': {
             let { name, item } = action.payload;
-            let ct = {
-                name: name,
-                key: getRandomString(5),
-                items: [],
-                hasNew: false
-            }
-            if (item != null) {
-                ct.items.push(item);
-                ct.hasNew = true;
-            }
-            return [...state, ct];
+            // let ct = {
+            //     name: name,
+            //     key: getRandomString(5),
+            //     items: [],
+            //     hasNew: false
+            // }
+            // if (item != null) {
+            //     ct.items.push(item);
+            //     ct.hasNew = true;
+            // }
+            return [...state, action.payload.item];
         }
         case 'CREATE_FIRST_COLLECTION': {
             let ct = {
