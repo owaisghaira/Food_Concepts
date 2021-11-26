@@ -7,13 +7,14 @@ import PopoverBtn from './popover-btn.js';
 import ScrollableCategories from './scrollable-categories.js';
 import StackGrid from './stack-grid.js';
 import SearchStackGrid from './search-stack-grid.js';
-import ProductExplorer from './product-explorer.js';
+import ShopsExplorer from './product-explorer.js';
 import DesignExplorer from './design-explorer.js';
 import ProductTile from './product-tile.js';
 import DesignTile from './design-tile.js';
 import Collections from './collections';
 import FormModal from './form-modal.js';
 import SuccessModal from './success-modal.js';
+import Cart from './cart';
 
 export {
     Header,
@@ -26,10 +27,11 @@ export {
     StackGrid,
     SearchStackGrid,
     DesignExplorer,
-    ProductExplorer,
+    ShopsExplorer,
     ProductTile,
     DesignTile,
     Collections,
     FormModal,
-    SuccessModal
+    SuccessModal,
+    Cart
 };

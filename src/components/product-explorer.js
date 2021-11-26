@@ -129,7 +129,7 @@ const ProductExplorer = ({ products, isMobileLayout }) => {
         <>
             <div className={isMobileLayout ? "p15" : "p60"} style={{ marginTop: '20px', marginBottom: '20px' }} >
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Title level={4}>Explore by Brands</Title>
+                    <Title level={4}>Explore by Restaurants</Title>
                     <Text onClick={() => setToggle(!toggle)} style={{ cursor: 'pointer' }}  >{toggle ? "Collapse" : "View All"}</Text>
                 </div>
             </div>

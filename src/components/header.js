@@ -19,16 +19,13 @@ const LayoutHeader = () => {
         history.push({ pathname: '/search/term/' + event.target.value });
     }
 
+
+    const goToTrackOrder = () => {
+        history.push({ pathname: '/track-order' });
+    }
+
     const goToHome = () => {
         history.push({ pathname: '/' });
-    }
-
-    const goToExplore = () => {
-        history.push({ pathname: '/explore' });
-    }
-
-    const goToMyCollection = () => {
-        history.push({ pathname: '/my-collection' });
     }
 
     const renderBadge = () => {
@@ -83,11 +80,11 @@ const LayoutHeader = () => {
                 <Input size="large" placeholder="search for anything" style={{ width: '38em', borderRadius: '8px' }} prefix={<SearchOutlined />} onPressEnter={handleClick} />
             </div>
             <Menu mode="horizontal" className="top-menu">
-                <Menu.Item key="explore-top" onClick={goToExplore} >
-                    Explore
+                <Menu.Item key="explore-top" onClick={goToHome} >
+                    Home
                 </Menu.Item>
-                <Menu.Item key="my-collection-top" onClick={goToMyCollection} >
-                    My Collection 
+                <Menu.Item key="my-collection-top" onClick={goToTrackOrder} >
+                    Track_Order 
                     {/* {renderBadge()} */}
                 </Menu.Item>
             </Menu>

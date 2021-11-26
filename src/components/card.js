@@ -1,29 +1,38 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { PopoverBtn } from '../components';
+// import { PopoverBtn } from '../components';
 import { Typography, Button } from 'antd';
 import { useHistory } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setToCart, addToCart, addQuantity } from '../redux/actions/cartAction';
 
 const CardItem = ({ item, size, hover }) => {
 
+    const Items = useSelector((state) => state.cart);
     let history = useHistory();
+    console.log(Items)
+    const dispatch = useDispatch();
     const [width, setWidth] = useState();
     const [height, setHeight] = useState();
     const imageContianer = useRef(null);
 
-    let { Images, SellingPrice, Name } = item;
-    // console.log(item)
+    let { Images, SellingPrice, Name, ProductID, VariantID, ComparePrice } = item;
+
+    const Cart = () => {
+
+        dispatch(addToCart({ProductID,VariantID,SellingPrice,ComparePrice,Name,Images}));
+    }
+
     const goToProduct = () => {
         history.push({ pathname: `/product`, state: item });
     }
 
-    const handleClick = (e) => {
-        if (e.target.className === 'card-overlay') {
-            goToProduct();
-            window.scrollTo(0, 0)
-        }
-    }
+    // const handleClick = (e) => {
+    //     if (e.target.className === 'card-overlay') {
+    //         goToProduct();
+    //         window.scrollTo(0, 0)
+    //     }
+    // }
 
     useEffect(() => {
         if (hover) {
@@ -42,21 +51,21 @@ const CardItem = ({ item, size, hover }) => {
             return (
                 <div className="mobile-title-bar" >
                     {/* <Text ellipsis={true} >{Name}</Text> */}
-                    <PopoverBtn item={item} quick={true} >
-                        <Button style={{ background: '#303d4e', border: 'none' }} type="primary" icon={<PlusOutlined />} size='middle' />
-                    </PopoverBtn>
+                    {/* <PopoverBtn item={item} quick={true} > */}
+                    <Button style={{ background: '#303d4e', border: 'none' }} type="primary" icon={<PlusOutlined />} size='middle' />
+                    {/* </PopoverBtn> */}
                 </div>
             );
         } else {
             return (
-                <div onClick={handleClick} >
-                    <div className="title-bar">
+                // <div >
+                    <div onClick={() =>Cart()} className="title-bar">
                         {/* <Text ellipsis={true} >{Name}</Text> */}
-                        <PopoverBtn item={item} >
-                            <Button style={{ background: '#303d4e', border: 'none' }} type="primary" icon={<PlusOutlined />} size='middle' />
-                        </PopoverBtn>
+                        {/* <PopoverBtn item={item} > */}
+                        <Button style={{ background: '#303d4e', border: 'none' }} type="primary" icon={<PlusOutlined />} size='middle' />
+                        {/* </PopoverBtn> */}
                     </div>
-                </div>
+                // </div>
             );
         }
     }

@@ -1,16 +1,19 @@
 import React from 'react';
 
 import { Switch, Route } from "react-router-dom";
-import { Home, Product, Explore, Search, MyCollections ,MyCollectionList} from '../screens';
+import { Home, Product, TrackOrder, Search, MyCollections ,MyCollectionList,CheckOut} from '../screens';
 
 const Navigation = () => {
     return (
         <Switch>
-            <Route path="/explore">
-                <Explore />
+            <Route path="/track-order">
+                <TrackOrder />
             </Route>
             <Route path="/product">
                 <Product />
+            </Route>
+            <Route path="/checkout">
+                <CheckOut />
             </Route>
             <Route path="/my-collection">
                 <MyCollections />

@@ -3,7 +3,7 @@ import ApplicationLayout from '../layout';
 import { Layout } from 'antd';
 import OpenSearchService from '../services/opensearch-service';
 import { useLayout } from '../providers/layout-provider';
-import { ProductExplorer, DesignExplorer } from '../components';
+import { ShopsExplorer, DesignExplorer } from '../components';
 
 const { Content } = Layout;
 
@@ -39,7 +39,7 @@ const Explore = () => {
     return (
         <ApplicationLayout>
             <Content>
-                <ProductExplorer products={products} isMobileLayout={isMobileLayout} />
+                <ShopsExplorer products={products} isMobileLayout={isMobileLayout} />
                 <DesignExplorer designs={designs} isMobileLayout={isMobileLayout} />
                 <div style={{ marginTop: '30px', marginBottom: '150px' }}></div>
             </Content>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLayout } from '../providers/layout-provider';
 import ApplicationLayout from '../layout';
-import { ScrollableCategories, StackGrid, ProductExplorer } from '../components';
+import { ScrollableCategories, StackGrid, ShopsExplorer } from '../components';
 import { Layout } from 'antd';
 
 const { Sider, Content } = Layout;
@@ -21,7 +21,7 @@ const Home = () => {
     return (
         <ApplicationLayout>
             <Content>
-                <ProductExplorer products={products} isMobileLayout={isMobileLayout} />
+                <ShopsExplorer products={products} isMobileLayout={isMobileLayout} />
                 <ScrollableCategories isMobileLayout={isMobileLayout} />
                 <StackGrid isMobileLayout={isMobileLayout} />
             </Content>
