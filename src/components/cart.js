@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Divider, Button, Space } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { removeAllCartItems, removeItem, addQuantity, subtractQuantity, addToCart } from '../redux/actions/cartAction'
 
 
 const Cart = () => {
+    const [subtotoal ,setSubtotal] = useState(0)
     let history = useHistory();
-    const cartItems = useSelector((state) => state.Cart);
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cart);
     const goToCheckOut = () => {
         history.push({ pathname: '/checkout' });
     }
@@ -25,12 +28,12 @@ const Cart = () => {
                                 <h5>{val.MetaTitle}</h5>
                                 <div>RS.{val.SellingPrice}</div>
                                 <Space>
-                                    {'1' == 1 ?
-                                        <span ><DeleteOutlined /></span>
+                                    {val.Quantity == 1 ?
+                                        <span onClick={() => { dispatch(removeItem(val)) }} ><DeleteOutlined /></span>
                                         :
-                                        <span><Button>-</Button></span>}
-                                    <span> 1 </span>
-                                    <Button>+</Button>
+                                        <Button onClick={() => { dispatch(subtractQuantity(val)) }}>-</Button>}
+                                    <span> {val.Quantity} </span>
+                                    <Button onClick={() => { dispatch(addToCart(val)) }}>+</Button>
 
                                 </Space>
                                 <Divider />
@@ -57,7 +60,8 @@ const Cart = () => {
                 <div>Total Price</div>
                 <div>250</div>
             </div>
-            <Button onClick={goToCheckOut} style={{ background: '#303d4e', color: '#fff', width: '90%', margin: '15px' }}>Go To Checklist</Button>
+            <Button onClick={goToCheckOut} style={{ background: '#303d4e', color: '#fff', width: '90%', margin: '15px' }}>Go To CheckOut</Button>
+            <Button onClick={() => { dispatch(removeAllCartItems()) }} style={{ background: '#303d4e', color: '#fff', width: '90%', margin: '15px' }}>Clear Cart</Button>
         </>
     )
 }

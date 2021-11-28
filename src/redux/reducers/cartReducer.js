@@ -27,21 +27,21 @@ let initialstate = [{
     SellingPrice: 0,
     VariantID: 0
 }]
-const cartReducer = (state = initialstate, action) => {
+const cartReducer = (state = [], action) => {
     switch (action.type) {
         /* Add item in cart item */
         case 'ADD_TO_CART': {
 
-            let product = action.payload
-            let item = state.find(item => item.ProductID == product.ProductID);
+            let product = action.payload;
+
+            let item = state.length > 0 ? state.find(item => item.ProductID == product.ProductID) : null;
 
             if (!item) {
+                item = { ...product };
+
                 item.Quantity = 1;
 
-                return [
-                    ...state,
-                    item
-                ]
+                return [...state,item]
             }
             else {
 
@@ -49,12 +49,16 @@ const cartReducer = (state = initialstate, action) => {
 
                     if (item.ProductID == product.ProductID) {
                         item.Quantity++;
-                    }
+                        return item;
+                    } 
+                    // else {
+                    //     return [...state,product];
 
-                    return item;
+                    // }
+
                 })
+                return [...state];
 
-                return [...items];
             }
         }
         /* Sub Quantity 1 into cart item */

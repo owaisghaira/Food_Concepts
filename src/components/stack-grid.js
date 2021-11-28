@@ -22,7 +22,6 @@ const StackGridItem = ({ isMobileLayout }) => {
     const stackGridContianer = useRef();
     const [start, setStart] = useState(1);
 
-    const collections = useSelector((state) => state.collections);
     // console.log(collections.length)
     const handleScroll = (e) => {
         const bottom = window.pageYOffset + window.innerHeight > document.body.clientHeight - 100;
