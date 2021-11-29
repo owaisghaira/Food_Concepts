@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { AlignLeftOutlined, SearchOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
 import { Input, Badge } from 'antd';
+import { Cart } from '../components'
 import { useSelector, useDispatch } from 'react-redux';
 import OpenSearchService from '../services/opensearch-service';
 import { importCollection } from '../redux/actions';
@@ -50,6 +51,10 @@ const MobileHeader = () => {
         history.push({ pathname: '/explore' });
     }
 
+    const goToCart = () => {
+        history.push({ pathname: '/cart' });
+    }
+
     const handleClick = async (event) => {
         history.push({ pathname: '/search/term/' + event.target.value });
     }
@@ -75,8 +80,9 @@ const MobileHeader = () => {
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'space-between', margin: 15 }}>
-                <div data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <AlignLeftOutlined /> {renderBadge()}
+                <div onClick={() => goToCart()} data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <ShoppingCartOutlined />
+                    {/* {renderBadge()} */}
                 </div>
 
                 <h4 style={{ fontFamily: "Swissa Piccola Regular" }} onClick={goToHome} >Food Concepts</h4>
@@ -85,10 +91,10 @@ const MobileHeader = () => {
                 </div>
 
             </div>
-            <div className="collapse" id="collapseExample" style={{ margin: '15px' }}>
+            {/* <div className="collapse" id="collapseExample" style={{ margin: '15px' }}>
                 <p onClick={goToExplore}> Explore</p>
                 <p onClick={goToMyCollection}> My Collection {renderBadge()} </p>
-            </div>
+            </div> */}
             <div className="collapse" id="collapseExample1" style={{ margin: '15px' }}>
                 <Input size="large" placeholder="search for anything" prefix={<SearchOutlined />} onPressEnter={handleClick} style={{ borderRadius: '8px' }} />
             </div>

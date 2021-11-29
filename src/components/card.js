@@ -10,7 +10,6 @@ const CardItem = ({ item, size, hover }) => {
 
     const Items = useSelector((state) => state.cart);
     let history = useHistory();
-    console.log(Items)
     const dispatch = useDispatch();
     const [width, setWidth] = useState();
     const [height, setHeight] = useState();

@@ -1,50 +1,76 @@
 import React, { useEffect, useState } from 'react'
 import ApplicationLayout from '../layout';
-import { Layout } from 'antd';
-import OpenSearchService from '../services/opensearch-service';
+import { Divider, Layout, Typography, } from 'antd';
 import { useLayout } from '../providers/layout-provider';
-import { ShopsExplorer, DesignExplorer } from '../components';
-
+const { Title, Text } = Typography
 const { Content } = Layout;
 
-const Explore = () => {
+const TrackOrder = () => {
     const [isMobileLayout] = useLayout();
-    const [products, setProducts] = useState([]);
-    const [designs, setDesigns] = useState([]);
 
     useEffect(() => {
 
-        const getExploreItems = async () => {
-
-            let services = [
-                OpenSearchService.getExploreProducts(),
-                OpenSearchService.getExploreDesigns(),
-                OpenSearchService.trackExplore(),
-            ];
-
-            let [productsResponse, designsResponse] = await Promise.all(services);
-
-            if (productsResponse.status === 200 && productsResponse.data !== null) {
-                setProducts(productsResponse.data.hits.hits);
-            }
-
-            if (designsResponse.status === 200 && designsResponse.data !== null) {
-                setDesigns(designsResponse.data.hits.hits);
-            }
-        }
-
-        // getExploreItems();
     }, [])
 
     return (
         <ApplicationLayout>
             <Content>
-                <ShopsExplorer products={products} isMobileLayout={isMobileLayout} />
-                <DesignExplorer designs={designs} isMobileLayout={isMobileLayout} />
-                <div style={{ marginTop: '30px', marginBottom: '150px' }}></div>
+
+                <div className={isMobileLayout ? "p15" : "p60"} style={{ marginTop: '20px', marginBottom: '80px' }}>
+
+                    <div className='row my-5'>
+                        <div className='col-lg-2 '></div>
+                        <div className='col-lg-8 col-12 '>
+                            <div className='shadow p-3'>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <h2 >Order Details</h2>
+                                    <h2>Order #000212</h2>
+                                </div>
+                                <Divider />
+                                <h4 style={{ fontWeight: 'bold' }}>Shipping Address</h4>
+                                <div>
+                                    <h5 >Address </h5>
+                                    <p> Kashif Foods - Gulistan e Johar
+                                        Shop # 5, Gold line residency, Block16 - A, Near KDA Overseas society, Gulistan e Johar, Karachi
+                                        Karachi, 75950
+                                    </p>
+                                </div>
+                                <Divider />
+                                <h4 style={{ fontWeight: 'bold' }} >Personal Information</h4>
+                                <div>
+                                    <h5>Name </h5>
+                                    <p> owais siddiq</p>
+                                    <h5>Phone </h5>
+                                    <p> 0123456</p>
+                                    <h5>Notes </h5>
+                                    <p> please deliver in 10 minutes</p>
+                                </div>
+                                <Divider />
+                                <h4 style={{ fontWeight: 'bold' }}>Payment Information</h4>
+                                <div className='col-lg-6'>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>Subtotal</div>
+                                        <div>200</div>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>Delivery Fee</div>
+                                        <div>50</div>
+                                    </div>
+                                    <Divider style={{ margin: '5px' }} />
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>Total Price</div>
+                                        <div>250</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='col-lg-2 '></div>
+                    </div>
+                </div>
             </Content>
         </ApplicationLayout>
     )
 }
 
-export default Explore
+export default TrackOrder

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Switch, Route } from "react-router-dom";
 import { Home, Product, TrackOrder, Search, MyCollections ,MyCollectionList,CheckOut} from '../screens';
-
+import {Cart} from '../components'
 const Navigation = () => {
     return (
         <Switch>
@@ -14,6 +14,9 @@ const Navigation = () => {
             </Route>
             <Route path="/checkout">
                 <CheckOut />
+            </Route>
+            <Route path="/cart">
+                <Cart/>
             </Route>
             <Route path="/my-collection">
                 <MyCollections />
