@@ -106,7 +106,7 @@ const StackGridItem = ({ isMobileLayout }) => {
                     </StackGrid>
                 </div>
                 <div className='col-lg-3 shadow text-center'>
-                    {!isMobileLayout &&  <Cart/>}
+                    {!isMobileLayout &&  <Cart displayButtons={true}/>}
                   
                 </div>
             </div>

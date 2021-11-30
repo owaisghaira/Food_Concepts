@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 // import { PopoverBtn } from '../components';
-import { Typography, Button } from 'antd';
+import { Button } from 'antd';
 import { useHistory } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { setToCart, addToCart, addQuantity } from '../redux/actions/cartAction';
+import { addToCart } from '../redux/actions/cartAction';
 
 const CardItem = ({ item, size, hover }) => {
 
-    const Items = useSelector((state) => state.cart);
+    // const Items = useSelector((state) => state.cart);
     let history = useHistory();
     const dispatch = useDispatch();
     const [width, setWidth] = useState();

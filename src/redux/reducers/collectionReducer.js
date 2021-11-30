@@ -8,13 +8,18 @@ const getRandomString = (length) => {
 }
 
 let initialState = [{
-    name: 'My First Collection',
-    key: getRandomString(5),
+    name: '',
+    phone: '',
+    notes: '',
+    latitude: '',
+    longitude: '',
+    address: '',
+    orderNumber: getRandomString(5),
     items: [],
-    hasNew: false
+    reviewGiven: false
 }];
 
-const collectionReducer = (state = [], action) => {
+const collectionReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'VISITED_COLLECTION': {
             let { key } = action.payload;
@@ -39,7 +44,7 @@ const collectionReducer = (state = [], action) => {
             return state;
         }
         case 'CREATE_COLLECTION': {
-            let { name, item } = action.payload;
+            // let data = action.payload;
             // let ct = {
             //     name: name,
             //     key: getRandomString(5),
@@ -50,7 +55,7 @@ const collectionReducer = (state = [], action) => {
             //     ct.items.push(item);
             //     ct.hasNew = true;
             // }
-            return [...state, action.payload.item];
+            return [...state, action.payload];
         }
         case 'CREATE_FIRST_COLLECTION': {
             let ct = {

@@ -15,6 +15,7 @@ import Collections from './collections';
 import FormModal from './form-modal.js';
 import SuccessModal from './success-modal.js';
 import Cart from './cart';
+import CartModal from './cart-modal';
 
 export {
     Header,
@@ -33,5 +34,6 @@ export {
     Collections,
     FormModal,
     SuccessModal,
-    Cart
+    Cart,
+    CartModal
 };

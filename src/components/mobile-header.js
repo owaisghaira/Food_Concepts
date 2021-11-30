@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
 import { Input, Badge } from 'antd';
 import { Cart } from '../components'
@@ -80,10 +80,10 @@ const MobileHeader = () => {
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'space-between', margin: 15 }}>
-                <div onClick={() => goToCart()} data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                {/* <div onClick={() => goToCart()} data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <ShoppingCartOutlined />
-                    {/* {renderBadge()} */}
-                </div>
+                    {renderBadge()}
+                </div> */}
 
                 <h4 style={{ fontFamily: "Swissa Piccola Regular" }} onClick={goToHome} >Food Concepts</h4>
                 <div data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">

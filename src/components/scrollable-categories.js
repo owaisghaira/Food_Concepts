@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Menu } from 'antd';
 import { useHorizontalScroll } from '../hooks';
-import OpenSearchService from '../services/opensearch-service';
 import ajaxService from '../services/ajax-service';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ScrollableCategories = ({ isMobileLayout }) => {
 
     const scrollRef = useHorizontalScroll();
-    let history = useHistory();
+    // let history = useHistory();
 
     const [categories, setCategories] = useState([]);
 
@@ -36,9 +35,9 @@ const ScrollableCategories = ({ isMobileLayout }) => {
 
     }, []);
 
-    const handleClick = (category) => {
-        history.push({ pathname: '/search/category/' + category });
-    }
+    // const handleClick = (category) => {
+    //     history.push({ pathname: '/search/category/' + category });
+    // }
 
     return (
         <div >

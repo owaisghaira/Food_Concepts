@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import ApplicationLayout from '../layout';
-import { Divider, Layout, Typography, } from 'antd';
+import { Divider, Layout,Button,Input} from 'antd';
 import { useLayout } from '../providers/layout-provider';
-const { Title, Text } = Typography
+import { Cart } from '../components';
 const { Content } = Layout;
 
 const TrackOrder = () => {
@@ -20,7 +20,13 @@ const TrackOrder = () => {
 
                     <div className='row my-5'>
                         <div className='col-lg-2 '></div>
+                      
                         <div className='col-lg-8 col-12 '>
+                        <div className='my-3' >
+                        <Input required style={{width:'50%'}} placeholder="Order No." />
+                        <Button style={{ background: '#303d4e', color: '#fff', width: '50%', }}>Search</Button>
+                            
+                        </div>
                             <div className='shadow p-3'>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <h2 >Order Details</h2>
@@ -48,19 +54,7 @@ const TrackOrder = () => {
                                 <Divider />
                                 <h4 style={{ fontWeight: 'bold' }}>Payment Information</h4>
                                 <div className='col-lg-6'>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <div>Subtotal</div>
-                                        <div>200</div>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <div>Delivery Fee</div>
-                                        <div>50</div>
-                                    </div>
-                                    <Divider style={{ margin: '5px' }} />
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <div>Total Price</div>
-                                        <div>250</div>
-                                    </div>
+                                    <Cart/>
                                 </div>
                             </div>
                         </div>

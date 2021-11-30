@@ -135,7 +135,7 @@ class AjaxService {
 
         let headers = {};
 
-        if (type == 'POST') {
+        if (type === 'POST') {
             headers = {
                 'X-Client-Token': GlobalVariable.CLIENT_TOKEN,
                 'Content-Type': 'application/json;charset=UTF-8'
@@ -159,9 +159,9 @@ class AjaxService {
             data: null,
         }
 
-        if (type == 'GET') {
+        if (type === 'GET') {
             options.params = data;
-        } else if (type == 'POST') {
+        } else if (type === 'POST') {
             options.data = JSON.stringify(data);
         }
 

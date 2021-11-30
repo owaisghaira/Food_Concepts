@@ -1,32 +1,32 @@
-const setCartItem = (state, action) => {
-    switch (action.type) {
-        case 'SET_TO_CART':
-            return {
-                ProductID: action.payload.ProductID,
-                VariantID: action.payload.VariantID,
-                Quantity: 0,
-                Images: action.payload.Images,
-                ComparePrice: action.payload.ComparePrice,
-                SellingPrice: action.payload.SellingPrice,
-                Name: action.payload.Name
-            };
-        default:
-            return state;
-    }
-}
+// const setCartItem = (state, action) => {
+//     switch (action.type) {
+//         case 'SET_TO_CART':
+//             return {
+//                 ProductID: action.payload.ProductID,
+//                 VariantID: action.payload.VariantID,
+//                 Quantity: 0,
+//                 Images: action.payload.Images,
+//                 ComparePrice: action.payload.ComparePrice,
+//                 SellingPrice: action.payload.SellingPrice,
+//                 Name: action.payload.Name
+//             };
+//         default:
+//             return state;
+//     }
+// }
 
-const condition = (item, action) => {
-    return item.ProductID == action.payload.ProductID && item.VariantID == action.payload.VariantID;
-}
-let initialstate = [{
-    ComparePrice: 0,
-    Images: '',
-    Name: "",
-    ProductID: 0,
-    Quantity: 0,
-    SellingPrice: 0,
-    VariantID: 0
-}]
+// const condition = (item, action) => {
+//     return item.ProductID == action.payload.ProductID && item.VariantID == action.payload.VariantID;
+// }
+// let initialstate = [{
+//     ComparePrice: 0,
+//     Images: '',
+//     Name: "",
+//     ProductID: 0,
+//     Quantity: 0,
+//     SellingPrice: 0,
+//     VariantID: 0
+// }]
 const cartReducer = (state = [], action) => {
     switch (action.type) {
         /* Add item in cart item */
@@ -34,23 +34,23 @@ const cartReducer = (state = [], action) => {
 
             let product = action.payload;
 
-            let item = state.length > 0 ? state.find(item => item.ProductID == product.ProductID) : null;
+            let item = state.length > 0 ? state.find(item => item.ProductID === product.ProductID) : null;
 
             if (!item) {
                 item = { ...product };
 
                 item.Quantity = 1;
 
-                return [...state,item]
+                return [...state, item]
             }
             else {
 
-                let items = state.map(item => {
+                state.map(item => {
 
-                    if (item.ProductID == product.ProductID) {
+                    if (item.ProductID === product.ProductID) {
                         item.Quantity++;
                         return item;
-                    } 
+                    }
                     // else {
                     //     return [...state,product];
 
@@ -68,7 +68,7 @@ const cartReducer = (state = [], action) => {
 
             let items = state.map(item => {
 
-                if (item.ProductID == product.ProductID) {
+                if (item.ProductID === product.ProductID) {
                     item.Quantity--;
                 }
 
@@ -98,7 +98,7 @@ const cartReducer = (state = [], action) => {
 
             let items = state.filter(item => {
 
-                if (item.ProductID != product.ProductID) {
+                if (item.ProductID !== product.ProductID) {
                     return item;
                 }
             })
