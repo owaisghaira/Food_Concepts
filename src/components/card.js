@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../redux/actions/cartAction';
+import ajaxService from '../services/ajax-service';
 
 const CardItem = ({ item, size, hover }) => {
 
@@ -15,11 +16,12 @@ const CardItem = ({ item, size, hover }) => {
     const [height, setHeight] = useState();
     const imageContianer = useRef(null);
 
-    let { Images, SellingPrice, Name, ProductID, VariantID, ComparePrice } = item;
+    let { Image, SellingPrice, Name, ProductID, VariantID, ComparePrice } = item;
+    let image = ajaxService.getImage(Image);
 
     const Cart = () => {
 
-        dispatch(addToCart({ProductID,VariantID,SellingPrice,ComparePrice,Name,Images}));
+        dispatch(addToCart({ProductID,VariantID,SellingPrice,ComparePrice,Name,image}));
     }
 
     const goToProduct = () => {
@@ -75,7 +77,7 @@ const CardItem = ({ item, size, hover }) => {
             ...styles[size]
         }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }} className="card-item" >
-                <img src={Images} style={{ borderRadius: '9px', objectFit: 'cover', width: '100%' }} alt={Images} onClick={goToProduct} ref={imageContianer} />
+                <img src={image} style={{ borderRadius: '9px', objectFit: 'cover', width: '100%' }} alt='logo' onClick={goToProduct} ref={imageContianer} />
                 {renderTitleBar()}
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px', fontWeight: 'bold' }}>
                     <p >{Name}</p>

@@ -16,17 +16,17 @@ const ScrollableCategories = ({ isMobileLayout }) => {
 
             let categoryResponse = await ajaxService.get('Category/Index');
 
-            // console.log(categoryResponse)
+            console.log(categoryResponse.data)
 
             let items = [];
 
-            if (categoryResponse !== undefined && categoryResponse.Success) {
-                categoryResponse.Payload.map(i => {
+            if (categoryResponse.data !== undefined && categoryResponse.data.Success) {
+                categoryResponse.data.Payload.map(i => {
                     items.push(i.Name);
                     return i;
                 });
 
-                // console.log(items)
+                console.log(items)
                 setCategories(items);
             }
         }

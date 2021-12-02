@@ -45,7 +45,7 @@ const Cart = ({ displayButtons }) => {
                                 <Divider />
                             </div>
                             <div>
-                                <img width='80' height='80' style={{ objectFit: 'cover' }} src={val.Images} alt='pic' />
+                                <img width='80' height='80' style={{ objectFit: 'cover' }} src={val.image} alt='pic' />
                             </div>
                         </div>
                     )

@@ -2,27 +2,44 @@ import React, { useState } from 'react'
 import ApplicationLayout from '../layout';
 import { Layout, Typography, Form, Button, Input } from 'antd';
 import { useLayout } from '../providers/layout-provider';
+import { useHistory } from 'react-router';
 import { Cart } from '../components'
 import { useSelector, useDispatch } from 'react-redux';
 import { createCollection } from '../redux/actions';
+import ajaxService from '../services/ajax-service';
 
 const { Content } = Layout;
 const { Title, Text } = Typography
 const CheckOut = () => {
 
     const [order, setOrder] = useState({ name: '', phone: '', notes: '', latitude: '00', longitude: '00', address: '', })
-    const collectdata = useSelector(state => state.collections)
     const [isMobileLayout] = useLayout();
+    const state = useSelector(state=>state.cart)
     const [form] = Form.useForm();
-    // let history = useHistory();
+    let history = useHistory();
     const dispatch = useDispatch()
     // console.log(order)
 
 
-    const goToOrder = () => {
-        dispatch(createCollection(order))
-        console.log(collectdata)
-        // history.push({ pathname: '/order-place' });
+    const goToOrder =async () => {
+        if (order.name !== ''){
+            let orderPost = {
+                ...order,
+                AddressId : 0,
+                PaymentMethod : 0,
+                ShippingMethod:59,
+                CartItems : state
+                
+            };
+            console.log(orderPost)
+            dispatch(createCollection(order))
+            await ajaxService.post('order/place',{ PlaceOrder : orderPost });
+
+            // history.push({ pathname: '/order-place' });
+        }
+        else{
+            alert('plz enter details')
+        }
     }
 
     return (
@@ -128,7 +145,6 @@ const CheckOut = () => {
                                 <Title level={4} className={isMobileLayout && 'text-center'}>Cart Summary</Title>
                                 <Cart displayButtons={false} />
                                 {isMobileLayout && <Button onClick={goToOrder} style={{ background: '#303d4e', color: '#fff', width: '100%', }}>Place Order</Button>}
-
                             </div>
                         </div>
                         <div className='col-lg-2 '></div>

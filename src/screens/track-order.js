@@ -2,12 +2,14 @@ import React, { useEffect} from 'react'
 import ApplicationLayout from '../layout';
 import { Divider, Layout,Button,Input} from 'antd';
 import { useLayout } from '../providers/layout-provider';
+import { useSelector } from 'react-redux';
 import { Cart } from '../components';
 const { Content } = Layout;
 
 const TrackOrder = () => {
     const [isMobileLayout] = useLayout();
-
+    const collectdata = useSelector(state => state.collections)
+    console.log(collectdata)
     useEffect(() => {
 
     }, [])

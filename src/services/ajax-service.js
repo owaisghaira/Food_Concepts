@@ -167,7 +167,7 @@ class AjaxService {
 
         axios.interceptors.response.use(function (response) {
             //store.dispatch(hideLoader());
-            return response.data;
+            return response;
         }, function (error) {
             //store.dispatch(hideLoader());
             if (401 === error.response.status) {

@@ -105,7 +105,7 @@ const collectionReducer = (state = initialState, action) => {
 
             return [...collections];
         }
-        case 'REMOVE_ITEM': {
+        case 'REMOVE_ITEm': {
             let { key, id } = action.payload;
             let collections = state.map(collection => {
                 if (collection.key === key) {
